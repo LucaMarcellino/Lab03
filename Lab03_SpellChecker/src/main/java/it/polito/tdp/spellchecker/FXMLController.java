@@ -70,6 +70,8 @@ public class FXMLController {
     	List<String> testo =new LinkedList<String>();
     	List<RichWord> testoErr ;
     	
+    	long startTime=System.nanoTime();
+    	
     	dizionario.loadDictionary();
     	String inputText;
     	if(txtDaCorreggere.getText().isEmpty()) {
@@ -87,8 +89,11 @@ public class FXMLController {
     	for(RichWord rw : testoErr) {
     		s+=rw;
     	}
+    	long estimateTime= System.nanoTime()-startTime;
+    	
     	txtCorretto.appendText(s);
     	lblErrori.setText("Numero Errori: "+testoErr.size());
+    	lblStato.setText("Tempo esecuzione: "+(estimateTime/1E9));
     	
     }
 
